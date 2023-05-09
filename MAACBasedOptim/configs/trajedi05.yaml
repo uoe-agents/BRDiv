@@ -1,0 +1,82 @@
+defaults:
+  - hydra: hydra_simple
+  - _self_
+
+
+name: CookingZoo
+separate_controllers: false
+
+logger:
+  load_dir: ${name}
+  log_grad: false
+  project: diversity-gen
+  entity: uoe-agents-div-team
+  logger_period: 0.1
+  save_model: true
+  save_model_period: 5
+
+# # Data collection-related parameters
+env:
+  #name: cookingZooEnv-v0
+  name: MARL-Circular-Overcooked-10-250-v0
+  parallel:
+    sp_collection: 160
+    xp_collection: 8
+    eval: 16
+
+run:
+  use_cuda: true
+  num_timesteps: 200000000
+  num_eval_episodes: 1
+  seed: 0
+  eval_seed: 500
+  total_checkpoints: 100
+  load_from_checkpoint: -1
+
+populations:
+  num_populations: 8
+  separate_controllers: true
+
+train:
+  timesteps_per_update: 8
+  gamma: 0.99
+  gamma_act_jsd: 0.5
+  target_update_rate: 1e-3
+  lr: 1e-4
+  max_grad_norm: 10.0
+
+loss_weights:
+  diversity_loss: values
+  scale_length: 0.5
+  xp_val_loss_weight: 0.0
+  sp_val_loss_weight: 2.50
+  sp_rew_weight: 2.50
+  jsd_weight: 0.0025
+  xp_loss_weights: 0.0
+  entropy_regularizer_loss: 0.008
+
+model:
+  with_gnn_controllers: false
+  parameter_sharing: false
+  separate_model_in_populations: true
+  enc_mid_dim1: 100
+  enc_mid_dim2: 100
+  gnn_h_dim1: 200
+  gnn_h_dim2: 200
+  gnn_out_dim: 100
+  actor_dims:
+    - 256
+    - 256
+  critic_dims:
+    - 256
+    - 256
+
+any_play:
+  with_any_play: false
+  any_play_classifier_loss_weight: 1.0
+  any_play_lambda: 0.001
+  classifier_dims:
+    - 256
+    - 256
+
+

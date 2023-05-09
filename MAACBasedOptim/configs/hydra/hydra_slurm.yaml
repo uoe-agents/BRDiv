@@ -1,0 +1,19 @@
+defaults:
+  - hydra_simple
+  - override launcher: submitit_slurm
+  - _self_
+
+job:
+  name: ${name}
+launcher:
+  timeout_min: 240
+  cpus_per_task: 4
+  tasks_per_node: 1
+  array_parallelism: 28
+  mem_per_cpu: 2G
+  cpus_per_gpu: null
+  gpus_per_node: null
+  gpus_per_task: null
+  mem_per_gpu: null
+  nodes: 1
+  additional_parameters: {"nice": 0}
