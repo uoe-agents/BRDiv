@@ -1,0 +1,26 @@
+defaults:
+  - hydra_slurm
+  - override sweeper: ax
+  - _self_
+
+sweeper:
+  ax_config:
+    max_trials: 128
+    early_stop:
+      minimize: true
+      max_epochs_without_improvement: 10
+    experiment:
+      minimize: true
+    params:
+      loss_weights.xp_val_loss_weight:
+        type: range
+        bounds: [0.1, 10.0]
+        log_scale: true
+      loss_weights.xp_loss_weights: 
+        type: range
+        bounds: [1.0, 100]
+        log_scale: true
+      loss_weights.entropy_regularizer_loss:
+        type: range
+        bounds: [1e-4, 1e-1]
+        log_scale: true

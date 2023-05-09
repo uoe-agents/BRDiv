@@ -1,0 +1,12 @@
+{
+  "LEVEL_LAYOUT":"-------\n-     -\n-  -  -\n-  -  -\n-  -  -\n-     -\n-------",
+  "STATIC_OBJECTS": [{"Cutboard": {"COUNT": 1, "X_POSITION": [0], "Y_POSITION":  [2]}},
+                     {"Deliversquare": {"COUNT": 1, "X_POSITION": [3], "Y_POSITION":  [6]}},
+                     {"Blender": {"COUNT": 1, "X_POSITION": [6], "Y_POSITION":  [4]}}],
+
+  "DYNAMIC_OBJECTS": [{"Plate":  {"COUNT": 1, "X_POSITION": [3], "Y_POSITION":  [3]}},
+                      {"Tomato": {"COUNT": 1, "X_POSITION": [6], "Y_POSITION":  [2]}},
+                      {"Carrot": {"COUNT": 1, "X_POSITION": [0], "Y_POSITION":  [4]}}
+  ],
+  "AGENTS": [{"MAX_COUNT": 2, "X_POSITION": [2, 4], "Y_POSITION":  [3]}]
+}

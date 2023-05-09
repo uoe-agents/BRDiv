@@ -1,0 +1,7 @@
+job:
+  chdir: true
+run:
+  dir: outputs/${name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+sweep:
+  dir: multirun/${name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  subdir: ${run.seed}

@@ -1,0 +1,27 @@
+defaults:
+  - hydra_slurm
+  - override sweeper: nevergrad
+  - _self_
+
+sweeper:
+  optim:
+    optimizer: NGOpt
+    budget: 128
+    num_workers: 16
+    noisy: false
+    maximize: false
+  parametrization:
+    loss_weights.xp_val_loss_weight:
+      init: 1.0
+      lower: 0.1
+      upper: 10.0
+      log: true
+    loss_weights.xp_loss_weights: 
+      init: 20
+      lower: 1.0
+      upper: 100.0
+    loss_weights.entropy_regularizer_loss:
+      init: 1e-2
+      lower: 1e-4
+      upper: 1e-1
+      log: true

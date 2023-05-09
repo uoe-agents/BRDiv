@@ -1,0 +1,75 @@
+defaults:
+  - hydra: hydra_simple
+  - _self_
+
+
+name: CookingZoo
+separate_controllers: false
+
+logger:
+  load_dir: ${name}
+  log_grad: false
+  project: diversity-gen
+  entity: uoe-agents-div-team
+  logger_period: 0.1
+  save_model: true
+  save_model_period: 5
+
+# # Data collection-related parameters
+env:
+  #name: cookingZooEnv-v0
+  name: MARL-CooperativeReaching-5-50-v0
+  parallel:
+    sp_collection: 32
+    xp_collection: 128
+    eval: 32
+
+run:
+  use_cuda: true
+  num_timesteps: 32000000
+  num_eval_episodes: 1
+  seed: 0
+  eval_seed: 500
+  total_checkpoints: 50
+  load_from_checkpoint: -1
+  device_id: 3
+
+populations:
+  num_populations: 4
+
+train:
+  timesteps_per_update: 8
+  gamma: 0.99
+  gamma_act_jsd: 0.1
+  target_update_rate: 1e-3
+  lr: 1e-4
+  max_grad_norm: 10.0
+
+loss_weights:
+  scale_length: 0.5
+  xp_val_loss_weight: 1.0
+  sp_val_loss_weight: 1.0
+  jsd_weight: 0.0
+  xp_loss_weights: 10.0
+  entropy_regularizer_loss: 0.03
+  final_entropy_regularizer_loss: 0.008
+
+model:
+  actor_dims:
+    - 128
+    - 256
+    - 256
+    - 128
+  critic_dims:
+    - 128
+    - 256
+    - 256
+    - 128
+
+any_play:
+  with_any_play: false
+  any_play_classifier_loss_weight: 1.0
+  any_play_lambda: 0.001
+  classifier_dims:
+    - 256
+    - 256

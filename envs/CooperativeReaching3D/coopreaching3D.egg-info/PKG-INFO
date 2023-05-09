@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: coopreaching3D
+Version: 0.0.2
+Summary: 3D Cooperative Reaching Environment
+Provides-Extra: test

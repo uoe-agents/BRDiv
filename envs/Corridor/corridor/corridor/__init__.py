@@ -1,0 +1,1 @@
+from corridor.corridor.environment_marl import MARLCorridorEnv
